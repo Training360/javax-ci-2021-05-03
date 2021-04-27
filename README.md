@@ -1,1 +1,1 @@
-# javax-ci-2021-05-03
+# CI/CD implementálása Maven/Gradle, Jenkins és Docker eszközökkel tanfolyam
