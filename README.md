@@ -6,7 +6,7 @@ https://groovy-lang.org/style-guide.html
 gradlew build
 ```
 
-A `build/lib` kvt-ban létrejön egy `employees-0.0.1-SNAPSHOT.jar`
+A `build/libs` kvt-ban létrejön egy `employees-0.0.1-SNAPSHOT.jar`
 
 Ezt lehet futtatni:
 
