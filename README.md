@@ -34,3 +34,13 @@ drop table employees;
 ```
 
 `build.gradle` állományba felveszed a `systemProperty`-ket (3 sor), `gradlew build`
+
+## Docker image futtatása
+
+Docker image: https://hub.docker.com/repository/docker/training360/employees-evo
+
+```shell
+docker run -p 8085:8080 --name tr360-employee training360/employees-evo
+```
+
+Utána a http://127.0.0.1:8085 címen bejön a `Hello Training!!!`.
