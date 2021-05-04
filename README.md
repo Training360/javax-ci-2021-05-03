@@ -24,9 +24,13 @@ docker run -d -e MYSQL_DATABASE=employees -e MYSQL_USER=employees -e MYSQL_PASSW
 docker exec -it employees-mariadb mysql employees
 ```
 
+Opcionális:
+
 ```sql
 create table employees (id bigint not null auto_increment, emp_name varchar(255), primary key (id));
 insert into employees(emp_name) values ("John Doe");
 select * from employees;
 drop table employees;
 ```
+
+`build.gradle` állományba felveszed a `systemProperty`-ket (3 sor), `gradlew build`
