@@ -15,3 +15,11 @@ java -jar employees-0.0.1-SNAPSHOT.jar
 ```
 
 Kipróbálható a http://localhost:8080/swagger-ui.html címen.
+
+```shell
+docker run -d -e MYSQL_DATABASE=employees -e MYSQL_USER=employees -e MYSQL_PASSWORD=employees   -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -p 3306:3306 --name employees-mariadb mariadb
+```
+
+```shell
+docker exec -it employees-mariadb mysql employees
+```
