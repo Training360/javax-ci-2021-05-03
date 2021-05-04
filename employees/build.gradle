@@ -77,6 +77,11 @@ task integrationTest(type: Test) {
 }
 
 integrationTest {
+    systemProperty 'spring.datasource.url', 'jdbc:mariadb://127.0.0.1/employees'
+    systemProperty 'spring.datasource.username', 'employees'
+    systemProperty 'spring.datasource.password', 'employees'
+
+
     dependsOn(test)
     useJUnitPlatform()
     finalizedBy jacocoTestReport

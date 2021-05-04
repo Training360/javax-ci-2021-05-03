@@ -40,18 +40,18 @@ public class EmployeesControllerRestAssuredIT {
     @Test
     void testListEmployees() {
         with()
-                .body(new CreateEmployeeCommand("John Doe"))
+                .body(new CreateEmployeeCommand("Jack Doe"))
                 .post("/api/employees")
                 .then()
                 .statusCode(201)
-                .body("name", equalTo("John Doe"))
+                .body("name", equalTo("Jack Doe"))
                 .log();
 
         with()
         .get("/api/employees")
                 .then()
                 .statusCode(200)
-                .body("[0].name", equalTo("John Doe"))
+                .body("[0].name", equalTo("Jack Doe"))
                 .body("size()", equalTo(1));
     }
 
