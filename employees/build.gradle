@@ -3,7 +3,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 	id "com.github.ben-manes.versions" version "0.38.0"
-        id 'jacoco'
+    id 'jacoco'
 }
 
 group = 'training'
@@ -18,8 +18,8 @@ sourceSets {
     integrationTest {
         java.srcDir "$projectDir/src/integration/java"
         resources.srcDir "$projectDir/src/integration/resources"
-        compileClasspath += main.output + test.output
-        runtimeClasspath += main.output + test.output
+        compileClasspath += main.output
+        runtimeClasspath += main.output
     }
 }
 
@@ -59,43 +59,40 @@ dependencies {
     integrationTestImplementation 'io.rest-assured:json-schema-validator'
     integrationTestImplementation 'io.rest-assured:rest-assured'
     integrationTestImplementation 'io.rest-assured:spring-mock-mvc'
-
 }
 
 test {
 	useJUnitPlatform()
-        finalizedBy jacocoTestReport
+    finalizedBy jacocoTestReport
 }
 
-task integrationTest(type: Test) {
+tasks.register('integrationTest', Test) {
     description = 'Runs integration tests.'
     group = 'verification'
+
+    useJUnitPlatform()
+
+    // MariaDB
+    // jdbc:mariadb://127.0.0.1/employees
+
+    systemProperty 'spring.datasource.url', findProperty('spring.datasource.url') ?: 'jdbc:h2:mem:db;DB_CLOSE_DELAY=-1'
+    systemProperty 'spring.datasource.username', findProperty('spring.datasource.username') ?: 'sa'
+    systemProperty 'spring.datasource.password', findProperty('spring.datasource.password') ?: 'sa'
 
     testClassesDirs = sourceSets.integrationTest.output.classesDirs
     classpath = sourceSets.integrationTest.runtimeClasspath
     shouldRunAfter test
-}
-
-integrationTest {
-    systemProperty 'spring.datasource.url', findProperty('spring.datasource.url') ?: 'jdbc:mariadb://127.0.0.1/employees'
-    systemProperty 'spring.datasource.username', findProperty('spring.datasource.username') ?: 'employees'
-    systemProperty 'spring.datasource.password', findProperty('spring.datasource.password') ?: 'employees'
-
-    dependsOn(test)
-    useJUnitPlatform()
     finalizedBy jacocoTestReport
 }
 
-
+check.dependsOn integrationTest
 
 jacocoTestReport {
     dependsOn integrationTest
 
     reports {
        xml.enabled true
-        csv.enabled true
+       csv.enabled true
    }
    getExecutionData().setFrom(fileTree(buildDir).include("/jacoco/*.exec"))
 }
-
-check.dependsOn jacocoTestReport
