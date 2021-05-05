@@ -106,3 +106,11 @@ docker build -t employees-jenkins --file Dockerfile.jenkins .
 docker network create jenkins
 docker run --detach --network jenkins --volume jenkins-data:/var/jenkins_home --volume /var/run/docker.sock:/var/run/docker.sock --publish 8090:8080 --name employees-jenkins  employees-jenkins
 ```
+
+Böngésző: `http://localhost:8090/`
+
+Generált jelszó (`docker logs -f employees-jenkins` vagy `docker exec -it employees-jenkins cat /var/jenkins_home/secrets/initialAdminPassword`)
+
+Pluginek feltelepítése - Custom/Next
+
+Admin felhasználó tulajdonságait: `admin`, e-mail: `admin@admin.admin`
