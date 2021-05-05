@@ -114,3 +114,11 @@ Generált jelszó (`docker logs -f employees-jenkins` vagy `docker exec -it empl
 Pluginek feltelepítése - Custom/Next
 
 Admin felhasználó tulajdonságait: `admin`, e-mail: `admin@admin.admin`
+
+## Saját build
+
+https://github.com/Training360/employees-20210505
+
+```shell
+docker exec --user root -it employees-jenkins chmod 777 /var/run/docker.sock
+```
