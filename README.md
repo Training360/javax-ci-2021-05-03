@@ -44,3 +44,11 @@ docker run -p 8085:8080 --name tr360-employee training360/employees-evo
 ```
 
 Utána a http://127.0.0.1:8085 címen bejön a `Hello Training!!!`.
+
+## Image készítése
+
+```shell
+docker build -t employees .
+
+docker run -p 8080:8080 --name my-employees employees
+```
