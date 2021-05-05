@@ -68,3 +68,15 @@ docker run -d --network employees-net -p 8081:8080 --name emp-app -e SPRING_DATA
 
 docker exec -it emp-app-mariadb  mysql employees
 ```
+
+## Docker futtás Gradle-ből
+
+```shell
+gradlew dockerRun
+```
+
+## Layered
+
+```shell
+docker build -t employees --file Dockerfile.layered .
+```

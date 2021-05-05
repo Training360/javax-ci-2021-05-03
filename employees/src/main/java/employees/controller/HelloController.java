@@ -26,6 +26,6 @@ import java.util.stream.Collectors;
 public class HelloController {
     @GetMapping
     public String hello() {
-        return "Hello Training!!!";
+        return "Hello Training (mod2)!!!";
     }
 }
