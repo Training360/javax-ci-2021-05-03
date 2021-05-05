@@ -48,7 +48,23 @@ Utána a http://127.0.0.1:8085 címen bejön a `Hello Training!!!`.
 ## Image készítése
 
 ```shell
+gradlew clean assemble
+
 docker build -t employees .
 
 docker run -p 8080:8080 --name my-employees employees
+```
+
+## Két kommunikáló container
+
+```shell
+docker network create employees-net
+
+docker run -d --network employees-net -e MYSQL_DATABASE=employees -e MYSQL_USER=employees -e MYSQL_PASSWORD=employees -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -p 3307:3306 --name emp-app-mariadb mariadb
+
+docker network inspect employees-net
+
+docker run -d --network employees-net -p 8081:8080 --name emp-app -e SPRING_DATASOURCE_URL=jdbc:mariadb://emp-app-mariadb/employees -e SPRING_DATASOURCE_USERNAME=employees -e SPRING_DATASOURCE_PASSWORD=employees employees
+
+docker exec -it emp-app-mariadb  mysql employees
 ```
