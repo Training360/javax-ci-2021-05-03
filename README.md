@@ -86,3 +86,15 @@ docker build -t employees --file Dockerfile.layered .
 ```shell
 docker build -t employees --file Dockerfile.localebuild .
 ```
+
+## E2E
+
+```shell
+docker run  --entrypoint "" -v "/C/training/javax-ci-2021-05-03/employees/integrationtest/postman:/etc/newman"  postman/newman:5-ubuntu newman run --environment=integrationtest.postman_environment.json employees.postman_collection.json
+```
+
+## E2E Docker Compose
+
+```shell
+docker-compose up --abort-on-container-exit
+```

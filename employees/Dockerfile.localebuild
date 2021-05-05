@@ -5,13 +5,13 @@ COPY settings.gradle .
 COPY build.gradle .
 COPY gradlew .
 RUN chmod +x gradlew
-RUN ./gradlew build
+RUN ./gradlew --console=plain  build
 
 FROM adoptopenjdk:11-jdk-hotspot as builder
 WORKDIR app
 COPY --from=cache /root/.gradle /root/.gradle
 COPY . .
-RUN ./gradlew test assemble
+RUN ./gradlew --console=plain -i test assemble
 
 FROM adoptopenjdk:11-jre-hotspot
 WORKDIR app
