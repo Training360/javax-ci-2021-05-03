@@ -81,14 +81,13 @@ tasks.register('integrationTest', Test) {
 
     testClassesDirs = sourceSets.integrationTest.output.classesDirs
     classpath = sourceSets.integrationTest.runtimeClasspath
-    shouldRunAfter test
+    //shouldRunAfter test
     finalizedBy jacocoTestReport
 }
 
 check.dependsOn integrationTest
 
 jacocoTestReport {
-    dependsOn integrationTest
 
     reports {
        xml.enabled true
