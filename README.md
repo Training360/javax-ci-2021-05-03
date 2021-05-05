@@ -98,3 +98,11 @@ docker run  --entrypoint "" -v "/C/training/javax-ci-2021-05-03/employees/integr
 ```shell
 docker-compose up --abort-on-container-exit
 ```
+
+## Jenkins
+
+```shell
+docker build -t employees-jenkins --file Dockerfile.jenkins .
+docker network create jenkins
+docker run --detach --network jenkins --volume jenkins-data:/var/jenkins_home --volume /var/run/docker.sock:/var/run/docker.sock --publish 8090:8080 --name employees-jenkins  employees-jenkins
+```
