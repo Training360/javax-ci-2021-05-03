@@ -102,3 +102,7 @@ dockerRun {
     image 'employees'
     ports '8082:8080'
 }
+
+springBoot {
+  mainClassName = 'employees.EmployeesApplication'
+}
