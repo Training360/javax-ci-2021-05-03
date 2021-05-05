@@ -80,3 +80,9 @@ gradlew dockerRun
 ```shell
 docker build -t employees --file Dockerfile.layered .
 ```
+
+## Build in docker
+
+```shell
+docker build -t employees --file Dockerfile.localebuild .
+```
