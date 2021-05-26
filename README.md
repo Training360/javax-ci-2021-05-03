@@ -122,3 +122,9 @@ https://github.com/Training360/employees-20210505
 ```shell
 docker exec --user root -it employees-jenkins chmod 777 /var/run/docker.sock
 ```
+
+## SonarQube
+
+```shell
+docker run --name employees-sonarqube --detach --network jenkins --publish 9000:9000 sonarqube:lts
+```
